@@ -12,21 +12,35 @@
       background: #f0f0f0;
     }
     model-viewer {
-      width: 90vw; 
-      height: 80vh;
+      width: 100vw; 
+      height: 100vh;
       background-color: white;
-      border: 1px solid #ccc;
-      border-radius: 8px;
+      border: none;
+      border-radius: 0;
     }
   </style>
 </head>
 <body>
-  <model-viewer src="pinguino.glb" 
-                ar 
-                ar-modes="webxr scene-viewer quick-look" 
-                camera-controls 
-                auto-rotate
-                alt="Modelo 3D de torre de juegos">
+  <model-viewer 
+    src="pinguino.glb" 
+    ios-src="pinguino.usdz"
+    ar 
+    ar-modes="webxr scene-viewer quick-look"
+    camera-controls 
+    camera-orbit="auto auto auto"
+    auto-rotate
+    alt="Modelo 3D de torre de juegos">
   </model-viewer>
+
+  <script>
+    window.addEventListener('load', () => {
+      const modelViewer = document.querySelector('model-viewer');
+      if (modelViewer.requestFullscreen) {
+        modelViewer.requestFullscreen();
+      } else if (modelViewer.webkitRequestFullscreen) { // Safari
+        modelViewer.webkitRequestFullscreen();
+      }
+    });
+  </script>
 </body>
 </html>
